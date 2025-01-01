@@ -41,7 +41,7 @@ export function AccountChart({ transactions }) {
 
     // Filter transactions within date range
     const filtered = transactions.filter(
-      (t) => new Date(t.date) >= startDate && new Date(t.date) <= endOfDay(now)
+      (t) => new Date(t.date) >= startDate && new Date(t.date) <= endOfDay(now),
     );
 
     // Group transactions by date
@@ -60,7 +60,7 @@ export function AccountChart({ transactions }) {
 
     // Convert to array and sort by date
     return Object.values(grouped).sort(
-      (a, b) => new Date(a.date) - new Date(b.date)
+      (a, b) => new Date(a.date) - new Date(b.date),
     );
   }, [transactions, dateRange]);
 
@@ -71,7 +71,7 @@ export function AccountChart({ transactions }) {
         income: acc.income + day.income,
         expense: acc.expense + day.expense,
       }),
-      { income: 0, expense: 0 }
+      { income: 0, expense: 0 },
     );
   }, [filteredData]);
 
@@ -99,13 +99,13 @@ export function AccountChart({ transactions }) {
           <div className="text-center">
             <p className="text-muted-foreground">Total Income</p>
             <p className="text-lg font-bold text-green-500">
-              ${totals.income.toFixed(2)}
+              {totals.income.toFixed(2)}
             </p>
           </div>
           <div className="text-center">
             <p className="text-muted-foreground">Total Expenses</p>
             <p className="text-lg font-bold text-red-500">
-              ${totals.expense.toFixed(2)}
+              {totals.expense.toFixed(2)}
             </p>
           </div>
           <div className="text-center">
@@ -117,7 +117,7 @@ export function AccountChart({ transactions }) {
                   : "text-red-500"
               }`}
             >
-              ${(totals.income - totals.expense).toFixed(2)}
+              {(totals.income - totals.expense).toFixed(2)}
             </p>
           </div>
         </div>

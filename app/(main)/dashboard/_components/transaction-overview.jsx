@@ -34,12 +34,12 @@ const COLORS = [
 
 export function DashboardOverview({ accounts, transactions }) {
   const [selectedAccountId, setSelectedAccountId] = useState(
-    accounts.find((a) => a.isDefault)?.id || accounts[0]?.id
+    accounts.find((a) => a.isDefault)?.id || accounts[0]?.id,
   );
 
   // Filter transactions for selected account
   const accountTransactions = transactions.filter(
-    (t) => t.accountId === selectedAccountId
+    (t) => t.accountId === selectedAccountId,
   );
 
   // Get recent transactions (last 5)
@@ -73,7 +73,7 @@ export function DashboardOverview({ accounts, transactions }) {
     ([category, amount]) => ({
       name: category,
       value: amount,
-    })
+    }),
   );
 
   return (
@@ -126,7 +126,7 @@ export function DashboardOverview({ accounts, transactions }) {
                         "flex items-center",
                         transaction.type === "EXPENSE"
                           ? "text-red-500"
-                          : "text-green-500"
+                          : "text-green-500",
                       )}
                     >
                       {transaction.type === "EXPENSE" ? (
@@ -134,7 +134,7 @@ export function DashboardOverview({ accounts, transactions }) {
                       ) : (
                         <ArrowUpRight className="mr-1 h-4 w-4" />
                       )}
-                      ${transaction.amount.toFixed(2)}
+                      {transaction.amount.toFixed(2)}
                     </div>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ export function DashboardOverview({ accounts, transactions }) {
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, value }) => `${name}: $${value.toFixed(2)}`}
+                    label={({ name, value }) => `${name}: ${value.toFixed(2)}`}
                   >
                     {pieChartData.map((entry, index) => (
                       <Cell
@@ -177,7 +177,7 @@ export function DashboardOverview({ accounts, transactions }) {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(value) => `$${value.toFixed(2)}`}
+                    formatter={(value) => `${value.toFixed(2)}`}
                     contentStyle={{
                       backgroundColor: "hsl(var(--popover))",
                       border: "1px solid hsl(var(--border))",
