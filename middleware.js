@@ -29,7 +29,7 @@ const isProtectedRoute = createRouteMatcher([
 // });
 
 // Create base Clerk middleware
-const clerk = clerkMiddleware(async (auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   const { userId } = await auth();
 
   if (!userId && isProtectedRoute(req)) {
@@ -41,7 +41,7 @@ const clerk = clerkMiddleware(async (auth, req) => {
 });
 
 // Chain middlewares - ArcJet runs first, then Clerk
-export default clerk;
+// export default clerk;
 
 export const config = {
   matcher: [
